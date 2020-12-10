@@ -49,9 +49,9 @@ while running:
         if games == "Select_Stage":
             _GAME_SCENE = False
             _STAGE_SELECT = True
-        elif stageConse.game(selectStage.stage_info) == "Retry":
+        elif games == "Retry":
             print("retry")
-        elif stageConse.game(selectStage.stage_info) == "Next_Stage":
+        elif games == "Next_Stage":
             selectStage.stage_info += 1
 
 
