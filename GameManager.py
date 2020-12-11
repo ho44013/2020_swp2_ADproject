@@ -239,7 +239,7 @@ class GameManager:
                         self.isEndgame = True
 
                 if self.comboStart:
-                    self.comboTime = self.time - self.dt
+                    self.comboTime = pygame.time.get_ticks() / 1000 - self.dt
                     if self.comboTime >= 3:
                         self.combo = 0
                         self.comboStart = False
@@ -267,7 +267,7 @@ class GameManager:
                     self.gamepad.blit(self.goldMark[0], self.goldmarkPos[0])
 
                     if self.maxCombo >= int(self.clear_misson[0]) or self.time < int(self.clear_misson[1]):
-                        self.gamepad.blit(self.star[1], self.starPos[1])
+                        self.gamepad.blit(self.star[2], self.starPos[2])
                     if self.maxCombo >= int(self.clear_misson[0]) and self.time < int(self.clear_misson[1]):
                         self.gamepad.blit(self.star[1], self.starPos[1])
                         self.gamepad.blit(self.star[2], self.starPos[2])
