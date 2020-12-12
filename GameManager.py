@@ -21,6 +21,9 @@ class GameManager:
 
     def __init__(self, stage):
         pygame.init()
+        pygame.mixer.init()
+        #sound
+        self.shoot_effectSound = 'Assets/Resources/Sound/Effect/Hit.ogg'
         #UI
         self.font = pygame.font.Font("Fonts/NanumMyeongjoExtraBold.ttf", 30)
         self.combo = 0
@@ -152,7 +155,7 @@ class GameManager:
             self.clearLabel[i] = self.font.render(self.clearStr[i], True, Black)
 
     def readtxt(self, stage):
-        f = open("stage{}".format(stage) + ".txt", "r")
+        f = open("Assets/Resources/Stage/stage{}".format(stage) + ".txt", "r")
         line = f.readlines()
         f.close()
         return line
@@ -179,6 +182,8 @@ class GameManager:
                         if event.key == pygame.K_SPACE:
                             for i in range(13, -1, -1):
                                 if self.stageblocks[i][player.x_change] != '0':
+                                    pygame.mixer.music.load(self.shoot_effectSound)
+                                    pygame.mixer.music.play(0)
                                     self.resultblock.append(int(self.stageblocks[i][player.x_change]) - 1)
                                     self.checkblock.append(self.stageblocks[i][player.x_change])
                                     self.colorPanel.fill(self.colorPanel_colors[int(self.stageblocks[i][player.x_change]) - 1])
@@ -240,7 +245,7 @@ class GameManager:
 
                 if self.comboStart:
                     self.comboTime = pygame.time.get_ticks() / 1000 - self.dt
-                    if self.comboTime >= 3:
+                    if self.comboTime >= 2.5:
                         self.combo = 0
                         self.comboStart = False
 
