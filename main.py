@@ -48,6 +48,7 @@ while running:
         games = stageConse.game(selectStage.stage_info)
         if games == "Select_Stage":
             _GAME_SCENE = False
+            selectStages._UNLOCKED_STAGE_SELECT = False
             _STAGE_SELECT = True
         elif games == "Retry":
             print("retry")
